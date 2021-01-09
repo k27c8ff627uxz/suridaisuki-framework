@@ -1,0 +1,11 @@
+{
+  "name": "suridaisuki-framework",
+  "version": "0.0.0",
+  "description": "ホームページ「数理大好き」のメインフレームワークです",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k27c8ff627uxz/suridaisuki-framework.git"
+  },
+  "author": "k27c8ff627uxz",
+  "homepage": "http://proofcafe.org/k27c8/math/"
+}

@@ -15,6 +15,7 @@
   "homepage": "http://proofcafe.org/k27c8/math/",
   "dependencies": {
     "next": "^10.0.5",
+    "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",

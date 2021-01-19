@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import CSS from 'csstype';
 
 const mailMessage: CSS.Properties = {
@@ -26,7 +27,9 @@ export default class extends Component {
 								<img src={`${process.env.BASE_PATH}/static/pic/math/title.gif`} />
 							</td></tr>
 							<tr><td>
-								<img src={`${process.env.BASE_PATH}/static/pic/info/title.gif`} />
+								<Link href="/info"><a>
+									<img src={`${process.env.BASE_PATH}/static/pic/info/title.gif`} />
+								</a></Link>
 							</td></tr>
 						</tbody>
 					</table>

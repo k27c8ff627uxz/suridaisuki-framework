@@ -24,7 +24,9 @@ export default class extends Component {
 								メインメニュー
 							</th></tr>
 							<tr><td>
-								<img src={`${process.env.BASE_PATH}/static/pic/math/title.gif`} />
+								<Link href="/math"><a>
+									<img src={`${process.env.BASE_PATH}/static/pic/math/title.gif`} />
+								</a></Link>
 							</td></tr>
 							<tr><td>
 								<Link href="/info"><a>

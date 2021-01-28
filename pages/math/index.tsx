@@ -54,7 +54,9 @@ export default class extends Component {
 		));
 		const imgData = this.doorsData.map(item => (
 			<td key={item.link}>
-				<img src={`${process.env.BASE_PATH}/static/pic/math/${item.img}`} />
+				<Link href={`/math/${item.link}`} as={`/math/${item.link}.html`}><a>
+					<img src={`${process.env.BASE_PATH}/static/pic/math/${item.img}`} />
+				</a></Link>
 			</td>
 		));
 

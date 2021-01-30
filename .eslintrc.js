@@ -11,6 +11,7 @@ module.exports = {
 		'indent': [ 2, 'tab' ],
 		'react/display-name': 0,
 		'@typescript-eslint/explicit-module-boundary-types': 0,
+		'@typescript-eslint/no-var-requires': 0,
 	},
 	'settings': {
 		'react': {

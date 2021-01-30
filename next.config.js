@@ -23,5 +23,6 @@ module.exports = {
 
 	env: {
 		BASE_PATH,
+		DOCUMENT_PATH: process.env.DOCUMENT_PATH,
 	},
 };

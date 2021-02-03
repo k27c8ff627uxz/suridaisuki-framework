@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { TopicGroup } from '../../components/math/door_page';
+import { getTopicName } from '../../utils/math_document';
 
 export default class extends Component {
 	doorsData = [
@@ -46,6 +48,15 @@ export default class extends Component {
 		},
 	];
 
+	getTopicsOfGroup(groupId: string): string[] {
+		const groupData = require(`${process.env.DOCUMENT_PATH}/math/topic_group.json`);
+		const topicGroup = groupData[groupId] as TopicGroup | undefined;
+		if (topicGroup === undefined) return [];
+		return topicGroup.topics
+			.filter((topic): topic is { type: 'linked', topic: string } => topic.type === 'linked')
+			.map(topic => topic.topic as string);
+	}
+
 	doors() {
 		const headData = this.doorsData.map(item => (
 			<th key={item.link}>
@@ -59,6 +70,26 @@ export default class extends Component {
 				</a></Link>
 			</td>
 		));
+		const topicList = this.doorsData.map(item => {
+			const topicList = this.getTopicsOfGroup(item.link);
+			return (<td key={item.link} style={{fontSize: 'small'}} width="101">
+				{
+					topicList
+						.map(item =>
+							<Link key={item} href={`/math/${item}`}>
+								<a>{getTopicName(item)}</a>
+							</Link>
+						).reduce((previousValue, currentValue, index) => {
+							if (previousValue.length === 0) return [ currentValue ];
+							return [
+								...previousValue,
+								<span key={`${index}-sep`}> / </span>,
+								currentValue,
+							];
+						}, [])
+				}
+			</td>);
+		});
 
 		return (
 			<table align="center" style={{width: '80%'}}>
@@ -67,6 +98,9 @@ export default class extends Component {
 				</tr>
 				<tr>
 					{imgData}
+				</tr>
+				<tr>
+					{topicList}
 				</tr>
 			</table>
 		);

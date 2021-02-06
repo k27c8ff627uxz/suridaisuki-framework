@@ -12,6 +12,7 @@ import {
 
 type Props = {
 	topicData: TopicData;
+	topicId: string;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -26,10 +27,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsContext) => {
-	const topic = ctx.params.topicId;
+	const topic = ctx.params.topicId as string;
 	const topicData = require(`${process.env.DOCUMENT_PATH}/math/${topic}/data.json`) as TopicData;
 	return {
-		props: { topicData },		
+		props: {
+			topicData,
+			topicId: topic,
+		},
 	};
 };
 
@@ -40,7 +44,10 @@ export default class extends Component<Props> {
 			<ol style={{display: 'inline-block', textAlign: 'left'}}>
 				{ mainContents.map(item => (
 					<li key={item.name}>
-						{item.title}
+						{ item.prefix ?? <span>{item.prefix}</span>}
+						<Link href={`/math/${this.props.topicId}/page/${item.name}`}><a>
+							{item.title}
+						</a></Link>
 					</li>
 				))}
 			</ol>

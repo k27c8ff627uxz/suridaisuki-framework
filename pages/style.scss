@@ -3,3 +3,10 @@ body {
 	background-color: black;
 	color: white;
 }
+
+a {
+	color: aqua;
+	&:visited {
+		color: yellow;
+	}
+}

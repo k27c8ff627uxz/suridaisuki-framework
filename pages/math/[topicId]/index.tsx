@@ -5,6 +5,9 @@ import Link from 'next/link';
 import {
 	TopicList,
 	TopicData,
+	PageContent,
+	MathContent,
+	isPageContent,
 } from '../../../utils/math_document';
 
 type Props = {
@@ -31,6 +34,19 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsC
 };
 
 export default class extends Component<Props> {
+	content(contents: MathContent[]) {
+		const mainContents = contents.filter((item): item is PageContent => isPageContent(item) && item.hide !== true);
+		return (
+			<ol style={{display: 'inline-block', textAlign: 'left'}}>
+				{ mainContents.map(item => (
+					<li key={item.name}>
+						{item.title}
+					</li>
+				))}
+			</ol>
+		);
+	}
+
 	render() {
 		return (<div style={{textAlign: 'center'}}>
 			<Head>
@@ -43,6 +59,7 @@ export default class extends Component<Props> {
 				))}
 			</div>
 			<hr />
+			{this.content(this.props.topicData.contents)}
 			<hr />
 			<Link href="/math">戻る</Link>
 		</div>);

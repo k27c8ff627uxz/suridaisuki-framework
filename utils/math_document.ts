@@ -12,17 +12,29 @@ export type TopicData = {
 export type PageContent = {
 	name: string;
 	title: string;
-	hide?: boolean;
 	prefix?: string;
 }
 
-export type MathContent = PageContent
+export type SeparatorContent = {
+	sepType: 'Chapter';
+	name: string;
+}
+
+export type MathContent = { hide?: boolean } & (PageContent | SeparatorContent)
 
 export function isPageContent(content: MathContent): content is PageContent {
 	const arg = content as PageContent;
 	return (
 		arg.name !== undefined &&
 		arg.title !== undefined
+	);
+}
+
+export function isSeparatorContent(content: MathContent): content is SeparatorContent {
+	const arg = content as SeparatorContent;
+	return (
+		arg.sepType !== undefined &&
+		arg.name !== undefined
 	);
 }
 

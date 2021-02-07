@@ -5,9 +5,10 @@ import Link from 'next/link';
 import {
 	TopicList,
 	TopicData,
-	PageContent,
 	MathContent,
 	isPageContent,
+	isSeparatorContent,
+	SeparatorContent,
 } from '../../../utils/math_document';
 
 type Props = {
@@ -38,19 +39,78 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsC
 };
 
 export default class extends Component<Props> {
+	contentLine(content: MathContent) {
+		if (isPageContent(content)) {
+			if (content.hide) return undefined;
+			return (<span>
+				{ content.prefix ?? <span>{content.prefix}</span>}
+				<Link href={`/math/${this.props.topicId}/page/${content.name}`}><a>
+					{content.title}
+				</a></Link>
+			</span>);
+		} else if (isSeparatorContent(content)) {
+			return (<h5>{ content.name }</h5>);
+		}
+	}
+
 	content(contents: MathContent[]) {
-		const mainContents = contents.filter((item): item is PageContent => isPageContent(item) && item.hide !== true);
+		type SeparatedContents = {
+			isSeparate: false;
+			contents: MathContent[]
+		} | {
+			isSeparate: true;
+			content: SeparatorContent;
+		};
+		const separatedContents =
+			contents.reduce<SeparatedContents[]>((prev, current) => {
+				if (isSeparatorContent(current)) {
+					prev.push({
+						isSeparate: true,
+						content: current,
+					});
+				} else {
+					if (prev.length === 0) {
+						prev.push({
+							isSeparate: false,
+							contents: [ current ],
+						});
+					} else {
+						const lastData = prev[prev.length - 1];
+						if(lastData.isSeparate === true) {
+							prev.push({
+								isSeparate: false,
+								contents: [ current ],
+							});
+						} else {
+							lastData.contents.push(current);
+						}
+					}
+				}
+				return prev;
+			}, []);
 		return (
-			<ol style={{display: 'inline-block', textAlign: 'left'}}>
-				{ mainContents.map(item => (
-					<li key={item.name}>
-						{ item.prefix ?? <span>{item.prefix}</span>}
-						<Link href={`/math/${this.props.topicId}/page/${item.name}`}><a>
-							{item.title}
-						</a></Link>
-					</li>
-				))}
-			</ol>
+			<div style={{display: 'inline-block'}}>
+				{ separatedContents.map((contents, index) => {
+					if (contents.isSeparate === false) {
+						return (
+							<ol style={{textAlign: 'left'}} key={index}>
+								{ contents.contents.map(item => (
+									<li key={item.name}>
+										{ this.contentLine(item) }
+									</li>
+								))}
+							</ol>
+						);
+					} else {
+						return (
+							<div key={index}>
+								{this.contentLine(contents.content)}
+							</div>
+						);
+					}
+				})}
+			</div>
+
 		);
 	}
 
@@ -66,7 +126,7 @@ export default class extends Component<Props> {
 				))}
 			</div>
 			<hr />
-			{this.content(this.props.topicData.contents)}
+			{this.content(this.props.topicData.contents.filter(item => !item.hide))}
 			<hr />
 			<Link href="/math">戻る</Link>
 		</div>);

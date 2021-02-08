@@ -15,18 +15,31 @@ export type PageContent = {
 	prefix?: string;
 }
 
+export type OuterPageContent = {
+	name: string;
+	place: string;
+}
+
 export type SeparatorContent = {
 	sepType: 'Chapter';
 	name: string;
 }
 
-export type MathContent = { hide?: boolean } & (PageContent | SeparatorContent)
+export type MathContent = { hide?: boolean } & (PageContent | OuterPageContent | SeparatorContent)
 
 export function isPageContent(content: MathContent): content is PageContent {
 	const arg = content as PageContent;
 	return (
 		arg.name !== undefined &&
 		arg.title !== undefined
+	);
+}
+
+export function isOuterPageContent(content: MathContent): content is OuterPageContent {
+	const arg = content as OuterPageContent;
+	return (
+		arg.name !== undefined &&
+		arg.place !== undefined
 	);
 }
 
@@ -41,4 +54,11 @@ export function isSeparatorContent(content: MathContent): content is SeparatorCo
 export function getTopicName(topic: string) {
 	const data = require(`${process.env.DOCUMENT_PATH}/math/${topic}/data.json`);
 	return data.title as string;
+}
+
+export function getPageTitle(topic: string, contentName: string) {
+	const data = require(`${process.env.DOCUMENT_PATH}/math/${topic}/data.json`) as TopicData;
+	return data.contents.find(
+		(content): content is PageContent => isPageContent(content) && content.name === contentName
+	).title;
 }

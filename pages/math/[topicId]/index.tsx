@@ -9,6 +9,8 @@ import {
 	isPageContent,
 	isSeparatorContent,
 	SeparatorContent,
+	getPageTitle,
+	isOuterPageContent,
 } from '../../../utils/math_document';
 
 type Props = {
@@ -48,6 +50,12 @@ export default class extends Component<Props> {
 					{content.title}
 				</a></Link>
 			</span>);
+		} else if (isOuterPageContent(content)) {
+			return (
+				<Link href={`/math/${content.place}/page/${content.name}`}><a>
+					{getPageTitle(content.place, content.name)}
+				</a></Link>
+			);
 		} else if (isSeparatorContent(content)) {
 			return (<h5>{ content.name }</h5>);
 		}

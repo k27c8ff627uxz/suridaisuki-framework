@@ -13,6 +13,7 @@ export type PageContent = {
 	name: string;
 	title: string;
 	prefix?: string;
+	paragraphs: { name: string, title: string }[],
 }
 
 export type OuterPageContent = {
@@ -31,7 +32,8 @@ export function isPageContent(content: MathContent): content is PageContent {
 	const arg = content as PageContent;
 	return (
 		arg.name !== undefined &&
-		arg.title !== undefined
+		arg.title !== undefined &&
+		arg.paragraphs !== undefined
 	);
 }
 

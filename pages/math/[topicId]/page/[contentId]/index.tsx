@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import CSS from 'csstype';
+import Link from 'next/link';
 import {
 	TopicList,
 	TopicData,
@@ -9,6 +10,7 @@ import {
 } from '../../../../../utils/math_document';
 
 type Props = {
+	topicId: string;
 	contentData: PageContent;
 }
 
@@ -32,8 +34,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsContext) => {
-	const topicId = ctx.params.topicId;
-	const contentId = ctx.params.contentId;
+	const topicId = ctx.params.topicId as string;
+	const contentId = ctx.params.contentId as string;
 	const topicData = require(`${process.env.DOCUMENT_PATH}/math/${topicId}/data.json`) as TopicData;
 	const contentData = topicData.contents.find(item => {
 		if (!isPageContent(item)) {
@@ -42,11 +44,22 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsC
 		return item.name === contentId;
 	}) as PageContent;
 	return {
-		props: { contentData },		
+		props: { topicId, contentData },		
 	};
 };
 
 export default class extends Component<Props> {
+	paragraph(data: {name: string; title: string}) {
+		const { name, title } = data;
+		return (
+			<div key={name}>
+				<hr />
+				<a name={name}></a>
+				<h2 style={{color: 'lime'}}>{title}</h2>
+			</div>
+		);
+	}
+
 	render() {
 		const titleStyle: CSS.Properties = {
 			textAlign: 'center',
@@ -55,6 +68,11 @@ export default class extends Component<Props> {
 		};
 		return (<div>
 			<div style={titleStyle}>{this.props.contentData.title}</div>
+			{ this.props.contentData.paragraphs.map(item => this.paragraph(item)) }
+			<hr />
+			<div style={{textAlign: 'center'}}>
+				<Link href={`/math/${this.props.topicId}`}>戻る</Link>
+			</div>
 		</div>);
 	}
 }

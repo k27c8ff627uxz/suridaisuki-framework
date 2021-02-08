@@ -59,12 +59,12 @@ export default class extends Component {
 
 	doors() {
 		const headData = this.doorsData.map(item => (
-			<th key={item.link}>
+			<th key={item.title}>
 				{item.title}
 			</th>
 		));
 		const imgData = this.doorsData.map(item => (
-			<td key={item.link}>
+			<td key={item.title}>
 				<Link href={`/math/${item.link}`} as={`/math/${item.link}.html`}><a>
 					<img src={`${process.env.BASE_PATH}/static/pic/math/${item.img}`} />
 				</a></Link>
@@ -72,7 +72,7 @@ export default class extends Component {
 		));
 		const topicList = this.doorsData.map(item => {
 			const topicList = this.getTopicsOfGroup(item.link);
-			return (<td key={item.link} style={{fontSize: 'small'}} width="101">
+			return (<td key={item.title} style={{fontSize: 'small'}} width="101">
 				{
 					topicList
 						.map(item =>
@@ -93,15 +93,17 @@ export default class extends Component {
 
 		return (
 			<table align="center" style={{width: '80%'}}>
-				<tr>
-					{headData}
-				</tr>
-				<tr>
-					{imgData}
-				</tr>
-				<tr>
-					{topicList}
-				</tr>
+				<tbody>
+					<tr>
+						{headData}
+					</tr>
+					<tr>
+						{imgData}
+					</tr>
+					<tr>
+						{topicList}
+					</tr>
+				</tbody>
 			</table>
 		);
 	}

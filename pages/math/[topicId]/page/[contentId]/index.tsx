@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import CSS from 'csstype';
 import Link from 'next/link';
+import JsxParser from 'react-jsx-parser';
 import {
 	TopicList,
 	TopicData,
@@ -76,7 +77,9 @@ export default class extends Component<Props> {
 				<hr />
 				<a name={name}></a>
 				<h2 style={{color: 'lime'}}>{title}</h2>
-				{ rawText }
+				<JsxParser
+					jsx={rawText}
+				/>
 			</div>
 		);
 	}

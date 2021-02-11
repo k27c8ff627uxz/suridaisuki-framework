@@ -1,6 +1,22 @@
+const CopyPlugin = require('copy-webpack-plugin');
+const path = require('path');
+
 const BASE_PATH = process.env.BASE_PATH ?? '';
 
 module.exports = {
+	webpack: (config) => {
+		config.plugins.push(
+			new CopyPlugin({
+				patterns: [{
+					from: '*/pic/*',
+					to: path.join(__dirname, 'public/math/'),
+					context: `${process.env.DOCUMENT_PATH}/math`,
+				}],
+			})
+		);
+		return config;
+	},
+
 	trailingSlash: true,
 	exportPathMap: async function (defaultPathMap) {
 		const generatingPages = [

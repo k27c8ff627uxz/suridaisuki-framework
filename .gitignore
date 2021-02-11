@@ -5,3 +5,5 @@ package-lock.json
 # Next
 .next/
 out/
+
+public/math/*/pic/*

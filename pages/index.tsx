@@ -15,7 +15,7 @@ export default class extends Component {
 					<title>数理大好き</title>
 				</Head>
 				<div style={{margin: '20px'}}>
-					<img src={`${process.env.BASE_PATH}/static/pic/title.gif`} />
+					<img src={`${process.env.BASE_PATH}/title.gif`} />
 				</div>
 				<div style={{margin: '50px'}}>
 					<table border="2" align="center">
@@ -25,12 +25,12 @@ export default class extends Component {
 							</th></tr>
 							<tr><td>
 								<Link href="/math"><a>
-									<img src={`${process.env.BASE_PATH}/static/pic/math/title.gif`} />
+									<img src={`${process.env.BASE_PATH}/math/title.gif`} />
 								</a></Link>
 							</td></tr>
 							<tr><td>
 								<Link href="/info"><a>
-									<img src={`${process.env.BASE_PATH}/static/pic/info/title.gif`} />
+									<img src={`${process.env.BASE_PATH}/info/title.gif`} />
 								</a></Link>
 							</td></tr>
 						</tbody>
@@ -38,7 +38,7 @@ export default class extends Component {
 				</div>
 				<div style={{margin: '30px'}}>
 					<a href="mailto:k27c8_math@yahoo.co.jp">
-						<img src={`${process.env.BASE_PATH}/static/pic/mail.gif`} />
+						<img src={`${process.env.BASE_PATH}/mail.gif`} />
 						<div style={mailMessage}>メールはこちらへ↑↑↑</div>
 					</a>
 				</div>

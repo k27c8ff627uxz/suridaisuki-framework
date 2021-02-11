@@ -27,12 +27,12 @@ export default class extends Component {
 					<title>数理大好き！！！(いんふぉ)</title>
 				</Head>
 				<div style={{margin: '32px'}}>
-					<img src={`${process.env.BASE_PATH}/static/pic/info/title.gif`} />
+					<img src={`${process.env.BASE_PATH}/info/title.gif`} />
 				</div>
 				<div style={{margin: '66px'}}>
-					{this.linkIcon(`${process.env.BASE_PATH}/static/pic/info/profile.gif`, '/info/profile', '/info/profile.html')}
-					{this.linkIcon(`${process.env.BASE_PATH}/static/pic/info/twitter.gif`, 'http://twitter.com/suridaisuki')}
-					{this.linkIcon(`${process.env.BASE_PATH}/static/pic/info/mail.gif`, 'mailto:k27c8_math@yahoo.co.jp')}
+					{this.linkIcon(`${process.env.BASE_PATH}/info/profile.gif`, '/info/profile', '/info/profile.html')}
+					{this.linkIcon(`${process.env.BASE_PATH}/info/twitter.gif`, 'http://twitter.com/suridaisuki')}
+					{this.linkIcon(`${process.env.BASE_PATH}/info/mail.gif`, 'mailto:k27c8_math@yahoo.co.jp')}
 				</div>
 				<hr />
 				<Link href="/">戻る</Link>

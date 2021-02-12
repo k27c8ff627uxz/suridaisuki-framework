@@ -10,6 +10,9 @@ import {
 	PageContent,
 	isPageContent,
 } from '../../../../../utils/math_document';
+import {
+	pic as picTopic,
+} from '../../../../../components/custom_elements';
 
 type Props = {
 	topicId: string;
@@ -72,6 +75,7 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsC
 export default class extends Component<Props> {
 	paragraph(data: Paragraph) {
 		const { name, title, rawText } = data;
+		const pic = picTopic(this.props.topicId);
 		return (
 			<div key={name}>
 				<hr />
@@ -79,6 +83,9 @@ export default class extends Component<Props> {
 				<h2 style={{color: 'lime'}}>{title}</h2>
 				<JsxParser
 					jsx={rawText}
+					components={{
+						pic,
+					}}
 				/>
 			</div>
 		);

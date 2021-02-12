@@ -56,7 +56,8 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsC
 		return item.name === contentId;
 	}) as PageContent;
 	const paragraphs = contentData.paragraphs.map(item => {
-		const rawText = fs.readFileSync(`${process.env.DOCUMENT_PATH}/math/${topicId}/page/${contentData.name}/${item.name}.htm`).toString();
+		const rawText = fs.readFileSync(`${process.env.DOCUMENT_PATH}/math/${topicId}/page/${contentData.name}/${item.name}.htm`)
+			.toString().replace(/({|})/g, '{\'$1\'}');
 		return {
 			rawText,
 			name: item.name,

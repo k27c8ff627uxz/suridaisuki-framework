@@ -1,4 +1,5 @@
 import React from 'react';
+import MathJax from 'react-mathjax';
 
 type Props = {
 	// props.childrenでとってこれないのが少し気持ち悪い
@@ -13,3 +14,14 @@ export const pic = (topicId: string) => (
 		);
 	}
 );
+
+export function exp({ children }: Props) {
+	const { props } = children;
+	if (props === undefined) return <div />;
+	const formula = props.children as string;
+	return (
+		<MathJax.Provider>
+			<MathJax.Node inline formula={formula} />
+		</MathJax.Provider>
+	);
+}

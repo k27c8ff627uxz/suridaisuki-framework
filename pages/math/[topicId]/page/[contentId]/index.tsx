@@ -12,6 +12,7 @@ import {
 } from '../../../../../utils/math_document';
 import {
 	pic as picTopic,
+	exp,
 } from '../../../../../components/custom_elements';
 
 type Props = {
@@ -86,6 +87,7 @@ export default class extends Component<Props> {
 					jsx={rawText}
 					components={{
 						pic,
+						exp,
 					}}
 				/>
 			</div>

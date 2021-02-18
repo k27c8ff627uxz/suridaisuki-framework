@@ -13,6 +13,13 @@ import {
 import {
 	pic as picTopic,
 	exp,
+	key,
+	key1,
+	key2,
+	key3,
+	key4,
+	hide,
+	huge,
 } from '../../../../../components/custom_elements';
 
 type Props = {
@@ -88,6 +95,13 @@ export default class extends Component<Props> {
 					components={{
 						pic,
 						exp,
+						key,
+						key1,
+						key2,
+						key3,
+						key4,
+						hide,
+						huge,
 					}}
 				/>
 			</div>

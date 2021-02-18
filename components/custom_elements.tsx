@@ -63,3 +63,59 @@ export function exp({ children }: Props) {
 		</MathJax.Provider>
 	);
 }
+
+export function key({ children }: Props) {
+	return (
+		<span style={{color: 'red'}}>
+			{children}
+		</span>
+	);
+}
+
+export function key1({ children }: Props) {
+	return (
+		<span style={{color: 'yellow'}}>
+			{children}
+		</span>
+	);
+}
+
+export function key2({ children }: Props) {
+	return (
+		<span style={{color: 'lime'}}>
+			{children}
+		</span>
+	);
+}
+
+export function key3({ children }: Props) {
+	return (
+		<span style={{color: 'pink'}}>
+			{children}
+		</span>
+	);
+}
+
+export function key4({ children }: Props) {
+	return (
+		<span style={{color: 'aqua'}}>
+			{children}
+		</span>
+	);
+}
+
+export function hide({ children }: Props) {
+	return (
+		<span style={{color: 'black'}}>
+			{children}
+		</span>
+	);
+}
+
+export function huge({ children }: Props) {
+	return (
+		<span style={{color: 'yellow', fontSize: 'xx-large'}}>
+			{children}
+		</span>
+	);
+}

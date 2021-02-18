@@ -59,7 +59,7 @@ export function exp({ children }: Props) {
 	if (typeof formula !== 'string') throw `Error: <pic>${children}</pic>`;
 	return (
 		<MathJax.Provider>
-			<MathJax.Node inline formula={formula} />
+			<MathJax.Node inline formula={`\\displaystyle ${formula}`} />
 		</MathJax.Provider>
 	);
 }

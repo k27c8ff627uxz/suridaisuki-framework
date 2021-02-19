@@ -7,6 +7,7 @@ export type TopicData = {
 	title: string;
 	comment: string[];
 	contents: MathContent[];
+	propositions?: Proposition[]
 };
 
 export type PageContent = {
@@ -27,6 +28,11 @@ export type SeparatorContent = {
 }
 
 export type MathContent = { hide?: boolean } & (PageContent | OuterPageContent | SeparatorContent)
+
+export type Proposition = {
+	name: string;
+	hasProof: boolean;
+}
 
 export function isPageContent(content: MathContent): content is PageContent {
 	const arg = content as PageContent;

@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react';
+import Link, { LinkProps } from 'next/link';
 import MathJax from 'react-mathjax';
 import JsxParser from 'react-jsx-parser';
 
@@ -117,6 +118,38 @@ function huge({ children }: PropsWithChildren<void>) {
 	);
 }
 
+function nlink({ children, href }: PropsWithChildren<LinkProps>) {
+	return (
+		<Link href={`../${href}`}><a>
+			{children}
+		</a></Link>
+	);
+}
+
+function plink({ children, href }: PropsWithChildren<LinkProps>) {
+	return (
+		<Link href={`../../../${href}`}><a>
+			{children}
+		</a></Link>
+	);
+}
+
+function nplink({ children, href }: PropsWithChildren<LinkProps>) {
+	return (
+		<Link href={`../../../${href}`}><a>
+			{children}
+		</a></Link>
+	);
+}
+
+function tlink({ children, href }: PropsWithChildren<LinkProps>) {
+	return (
+		<Link href={`../../proposition/${href}`}><a>
+			{children}
+		</a></Link>
+	);
+}
+
 export type Props = {
 	jsx: string;
 	picPlace: string;
@@ -136,6 +169,10 @@ export default function customJSX(props: Props) {
 			key4,
 			hide,
 			huge,
+			nlink,
+			plink,
+			nplink,
+			tlink,
 		}}
 	/>;
 }

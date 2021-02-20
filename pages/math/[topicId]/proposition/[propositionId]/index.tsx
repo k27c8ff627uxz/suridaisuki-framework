@@ -3,22 +3,11 @@ import React, { Component } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import JsxParser from 'react-jsx-parser';
 import {
 	TopicList,
 	TopicData,
 } from '../../../../../utils/math_document';
-import {
-	pic as picTopic,
-	exp,
-	key,
-	key1,
-	key2,
-	key3,
-	key4,
-	hide,
-	huge,
-} from '../../../../../components/custom_elements';
+import CustomJSX from '../../../../../components/custom_jsx';
 
 type Props = {
 	topicId: string;
@@ -68,33 +57,15 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsC
 
 export default class extends Component<Props> {
 	render() {
-		const pic = picTopic(this.props.topicId);
+		const picPlace = `${process.env.BASE_PATH}/math/${this.props.topicId}/pic`;
 		return (<div>
 			<Head>
 				<title>証明</title>
 			</Head>
 			<hr />
-			<JsxParser
-				jsx={this.props.propositionText}
-				components={{
-					exp,
-				}}
-			/>
+			<CustomJSX jsx={this.props.propositionText} picPlace={picPlace} />
 			<hr />
-			<JsxParser
-				jsx={this.props.proofText}
-				components={{
-					exp,
-					pic,
-					key,
-					key1,
-					key2,
-					key3,
-					key4,
-					hide,
-					huge,
-				}}
-			/>
+			<CustomJSX jsx={this.props.proofText} picPlace={picPlace} />
 			<hr />
 			<div style={{textAlign: 'center'}}>
 				<Link href={`/math/${this.props.topicId}/proposition`}>戻る</Link>

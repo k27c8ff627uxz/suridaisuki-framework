@@ -1,9 +1,6 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import MathJax from 'react-mathjax';
-
-type Props = {
-	children: React.ReactNode;
-}
+import JsxParser from 'react-jsx-parser';
 
 function reformReactNode(node: React.ReactNode): React.ReactNode {
 	if (Array.isArray(node)) {
@@ -44,17 +41,17 @@ function reformReactNode(node: React.ReactNode): React.ReactNode {
 	}
 }
 
-export const pic = (topicId: string) => (
-	({ children }: Props) => {
+const picWithPlace = (place: string) => (
+	({ children }: PropsWithChildren<void>) => {
 		const picName = reformReactNode(children);
 		if (typeof picName !== 'string') throw `Error: <pic>${children}</pic>`;
 		return (
-			<img src={`${process.env.BASE_PATH}/math/${topicId}/pic/${picName}`}/>
+			<img src={`${place}/${picName}`} />
 		);
 	}
 );
 
-export function exp({ children }: Props) {
+function exp({ children }: PropsWithChildren<void>) {
 	const formula = reformReactNode(children);
 	if (typeof formula !== 'string') throw `Error: <pic>${children}</pic>`;
 	return (
@@ -64,7 +61,7 @@ export function exp({ children }: Props) {
 	);
 }
 
-export function key({ children }: Props) {
+function key({ children }: PropsWithChildren<void>) {
 	return (
 		<span style={{color: 'red'}}>
 			{children}
@@ -72,7 +69,7 @@ export function key({ children }: Props) {
 	);
 }
 
-export function key1({ children }: Props) {
+function key1({ children }: PropsWithChildren<void>) {
 	return (
 		<span style={{color: 'yellow'}}>
 			{children}
@@ -80,7 +77,7 @@ export function key1({ children }: Props) {
 	);
 }
 
-export function key2({ children }: Props) {
+function key2({ children }: PropsWithChildren<void>) {
 	return (
 		<span style={{color: 'lime'}}>
 			{children}
@@ -88,7 +85,7 @@ export function key2({ children }: Props) {
 	);
 }
 
-export function key3({ children }: Props) {
+function key3({ children }: PropsWithChildren<void>) {
 	return (
 		<span style={{color: 'pink'}}>
 			{children}
@@ -96,7 +93,7 @@ export function key3({ children }: Props) {
 	);
 }
 
-export function key4({ children }: Props) {
+function key4({ children }: PropsWithChildren<void>) {
 	return (
 		<span style={{color: 'aqua'}}>
 			{children}
@@ -104,7 +101,7 @@ export function key4({ children }: Props) {
 	);
 }
 
-export function hide({ children }: Props) {
+function hide({ children }: PropsWithChildren<void>) {
 	return (
 		<span style={{color: 'black'}}>
 			{children}
@@ -112,10 +109,33 @@ export function hide({ children }: Props) {
 	);
 }
 
-export function huge({ children }: Props) {
+function huge({ children }: PropsWithChildren<void>) {
 	return (
 		<span style={{color: 'yellow', fontSize: 'xx-large'}}>
 			{children}
 		</span>
 	);
+}
+
+export type Props = {
+	jsx: string;
+	picPlace: string;
+}
+
+export default function customJSX(props: Props) {
+	const pic = picWithPlace(props.picPlace);
+	return <JsxParser
+		jsx={props.jsx}
+		components={{
+			pic,
+			exp,
+			key,
+			key1,
+			key2,
+			key3,
+			key4,
+			hide,
+			huge,
+		}}
+	/>;
 }

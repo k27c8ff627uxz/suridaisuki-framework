@@ -3,13 +3,12 @@ import React, { Component } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import JsxParser from 'react-jsx-parser';
 import {
 	TopicList,
 	TopicData,
 	Proposition,
 } from '../../../../utils/math_document';
-import { exp } from '../../../../components/custom_elements';
+import CustomJSX from '../../../../components/custom_jsx';
 
 type Props = {
 	title: string;
@@ -58,18 +57,14 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsC
 
 export default class extends Component<Props> {
 	propositions(propositions: PropositionWithText[]) {
+		const picPlace = `${process.env.BASE_PATH}/math/${this.props.topicId}`;
 		const propositionLink = (proposition: Proposition) =>
 			proposition.hasProof
 				? `<a href="${process.env.BASE_PATH}/math/${this.props.topicId}/proposition/${proposition.name}">●</a> `
 				: '● ';
 		return propositions.map(proposition => (<div key={proposition.name}>
 			<a name={proposition.name} />
-			<JsxParser
-				jsx={propositionLink(proposition) + proposition.propsitionText}
-				components={{
-					exp,
-				}}
-			/>
+			<CustomJSX jsx={propositionLink(proposition) + proposition.propsitionText} picPlace={picPlace} />
 			<hr />
 		</div>));
 	}

@@ -4,24 +4,13 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import CSS from 'csstype';
 import Head from 'next/head';
 import Link from 'next/link';
-import JsxParser from 'react-jsx-parser';
 import {
 	TopicList,
 	TopicData,
 	PageContent,
 	isPageContent,
 } from '../../../../../utils/math_document';
-import {
-	pic as picTopic,
-	exp,
-	key,
-	key1,
-	key2,
-	key3,
-	key4,
-	hide,
-	huge,
-} from '../../../../../components/custom_elements';
+import CustomJSX from '../../../../../components/custom_jsx';
 
 type Props = {
 	topicId: string;
@@ -85,26 +74,13 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsC
 export default class extends Component<Props> {
 	paragraph(data: Paragraph) {
 		const { name, title, rawText } = data;
-		const pic = picTopic(this.props.topicId);
+		const picPlace = `${process.env.BASE_PATH}/math/${this.props.topicId}/pic`;
 		return (
 			<div key={name}>
 				<hr />
 				<a name={name}></a>
 				<h2 style={{color: 'lime'}}>{title}</h2>
-				<JsxParser
-					jsx={rawText}
-					components={{
-						pic,
-						exp,
-						key,
-						key1,
-						key2,
-						key3,
-						key4,
-						hide,
-						huge,
-					}}
-				/>
+				<CustomJSX jsx={rawText} picPlace={picPlace} />
 			</div>
 		);
 	}

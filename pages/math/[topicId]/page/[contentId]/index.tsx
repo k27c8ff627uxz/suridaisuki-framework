@@ -2,6 +2,7 @@ import fs from 'fs';
 import React, { Component } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import CSS from 'csstype';
+import Head from 'next/head';
 import Link from 'next/link';
 import JsxParser from 'react-jsx-parser';
 import {
@@ -115,6 +116,9 @@ export default class extends Component<Props> {
 			fontSize: 'xxx-large',
 		};
 		return (<div>
+			<Head>
+				<title>{this.props.title}</title>
+			</Head>
 			<div style={titleStyle}>{this.props.title}</div>
 			{ this.props.paragraphs.map(item => this.paragraph(item)) }
 			<hr />

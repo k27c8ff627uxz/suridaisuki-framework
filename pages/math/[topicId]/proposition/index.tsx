@@ -60,7 +60,7 @@ export default class extends Component<Props> {
 	propositions(propositions: PropositionWithText[]) {
 		const propositionLink = (proposition: Proposition) =>
 			proposition.hasProof
-				? `<a href="/math/${this.props.topicId}/proposition/${proposition.name}">●</a> `
+				? `<a href="${process.env.BASE_PATH}/math/${this.props.topicId}/proposition/${proposition.name}">●</a> `
 				: '● ';
 		return propositions.map(proposition => (<div key={proposition.name}>
 			<a name={proposition.name} />

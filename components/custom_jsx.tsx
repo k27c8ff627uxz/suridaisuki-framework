@@ -174,5 +174,9 @@ export default function customJSX(props: Props) {
 			nplink,
 			tlink,
 		}}
+		onError={(err) => {
+			console.log(err);
+			throw `JSX parse error: ${err}`; 
+		}}
 	/>;
 }

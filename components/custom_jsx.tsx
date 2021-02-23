@@ -150,6 +150,11 @@ function tlink({ children, href }: PropsWithChildren<LinkProps>) {
 	);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function comment(props: PropsWithChildren<void>) {
+	return <span /> as JSX.Element;
+}
+
 export type Props = {
 	jsx: string;
 	picPlace: string;
@@ -173,6 +178,7 @@ export default function customJSX(props: Props) {
 			plink,
 			nplink,
 			tlink,
+			comment,
 		}}
 		onError={(err) => {
 			console.log(err);

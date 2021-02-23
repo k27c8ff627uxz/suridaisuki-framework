@@ -40,5 +40,6 @@ module.exports = {
 	env: {
 		BASE_PATH,
 		DOCUMENT_PATH: process.env.DOCUMENT_PATH,
+		GA_TRACKING_ID: process.env.GA_TRACKING_ID ?? '',
 	},
 };

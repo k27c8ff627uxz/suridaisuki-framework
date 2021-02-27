@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import CSS from 'csstype';
+import RenewalHistory from '../../components/renewal_history';
 import { TopicGroup } from '../../components/math/door_page';
 import { getTopicName } from '../../utils/math_document';
 
@@ -108,6 +110,24 @@ export default class extends Component {
 		);
 	}
 
+	renewalHistory() {
+		const style: CSS.Properties = {
+			display: 'inline-block',
+			textAlign: 'left',
+			overflowX: 'scroll',
+			width: '280px',
+			height: '130px',
+			padding: '10px',
+			fontSize: 'small',
+			borderWidth: '2px',
+			borderColor: 'white',
+			borderStyle: 'inset',
+		};
+		return (<div style={style}>
+			<RenewalHistory />
+		</div>);
+	}
+
 	render() {
 		return (
 			<div style={{textAlign: 'center'}}>
@@ -118,6 +138,7 @@ export default class extends Component {
 				<div style={{marginTop: '40px'}}>
 					ここでは、数学を扱います。
 				</div>
+				{ this.renewalHistory() }
 				<hr />
 				{this.doors()}
 				<hr />

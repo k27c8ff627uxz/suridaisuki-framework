@@ -12,6 +12,7 @@ import {
 	getPageTitle,
 	isOuterPageContent,
 } from '../../../utils/math_document';
+import FollowTwitter from '../../../components/follow_twitter';
 
 type Props = {
 	topicData: TopicData;
@@ -126,12 +127,16 @@ export default class extends Component<Props> {
 		return (<div style={{textAlign: 'center'}}>
 			<Head>
 				<title>{this.props.topicData.title}</title>
+				<script async id={Math.random().toString()} src='https://platform.twitter.com/widgets.js' />
 			</Head>
 			<h1 style={{color: 'yellow'}}>{this.props.topicData.title}</h1>
 			<div style={{color: 'red'}}>
 				{ this.props.topicData.comment.map((text, index) => (
 					<div key={index}>{text}</div>
 				))}
+			</div>
+			<div style={{ textAlign: 'left' }}>
+				<FollowTwitter />
 			</div>
 			<hr />
 			{this.content(this.props.topicData.contents.filter(item => !item.hide))}

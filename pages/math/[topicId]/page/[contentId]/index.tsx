@@ -11,6 +11,7 @@ import {
 	isPageContent,
 } from '../../../../../utils/math_document';
 import CustomJSX from '../../../../../components/custom_jsx';
+import FollowTwitter from '../../../../../components/follow_twitter';
 
 type Props = {
 	topicId: string;
@@ -94,8 +95,10 @@ export default class extends Component<Props> {
 		return (<div>
 			<Head>
 				<title>{this.props.title}</title>
+				<script async id={Math.random().toString()} src='https://platform.twitter.com/widgets.js' />
 			</Head>
 			<div style={titleStyle}>{this.props.title}</div>
+			<FollowTwitter />
 			{ this.props.paragraphs.map(item => this.paragraph(item)) }
 			<hr />
 			<div style={{textAlign: 'center'}}>

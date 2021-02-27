@@ -32,7 +32,7 @@ export default class extends Component {
 						</tr>
 						<tr>
 							<th>Twitter</th>
-							<td><a href="https://twitter.com/suridaisuki">@suridaisuki</a></td>
+							<td><a href={`https://twitter.com/${process.env.TWITTER}`}>@{process.env.TWITTER}</a></td>
 						</tr>
 						<tr>
 							<th>血液型</th>

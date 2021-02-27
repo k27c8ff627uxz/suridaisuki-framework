@@ -31,7 +31,7 @@ export default class extends Component {
 				</div>
 				<div style={{margin: '66px'}}>
 					{this.linkIcon(`${process.env.BASE_PATH}/info/profile.gif`, '/info/profile', '/info/profile.html')}
-					{this.linkIcon(`${process.env.BASE_PATH}/info/twitter.gif`, 'http://twitter.com/suridaisuki')}
+					{this.linkIcon(`${process.env.BASE_PATH}/info/twitter.gif`, `http://twitter.com/${process.env.TWITTER}`)}
 					{this.linkIcon(`${process.env.BASE_PATH}/info/mail.gif`, 'mailto:k27c8_math@yahoo.co.jp')}
 				</div>
 				<hr />

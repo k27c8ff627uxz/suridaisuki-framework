@@ -42,6 +42,7 @@ class Document extends NextDocument<Props> {
 			<Html >
 				<Head>
 					{ this.googleAnalytics(process.env.GA_TRACKING_ID) }
+					<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' />
 				</Head>
 				<body>
 					<Main />

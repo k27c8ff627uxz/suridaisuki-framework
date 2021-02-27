@@ -41,5 +41,8 @@ module.exports = {
 		BASE_PATH,
 		DOCUMENT_PATH: process.env.DOCUMENT_PATH,
 		GA_TRACKING_ID: process.env.GA_TRACKING_ID ?? '',
+		GAD_CLIENT: process.env.GAD_CLIENT ?? '',
+		GAD_SLOT1: process.env.GAD_SLOT1 ?? '',
+		GAD_SLOT2: process.env.GAD_SLOT2 ?? '',
 	},
 };

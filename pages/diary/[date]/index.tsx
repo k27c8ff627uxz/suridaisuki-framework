@@ -54,7 +54,7 @@ export default class extends Component<Props> {
 			</Head>
 			<div style={titleStyle}>{this.props.title}</div>
 			<hr />
-			<CustomJSX jsx={this.props.rawText} picPlace='' />
+			<CustomJSX jsx={this.props.rawText} />
 			<hr />
 			<div style={{textAlign: 'center'}}>
 				<Link href='/diary'>戻る</Link>

@@ -75,13 +75,17 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsC
 export default class extends Component<Props> {
 	paragraph(data: Paragraph) {
 		const { name, title, rawText } = data;
-		const picPlace = `${process.env.BASE_PATH}/math/${this.props.topicId}/pic`;
 		return (
 			<div key={name}>
 				<hr />
 				<a name={name}></a>
 				<h2 style={{color: 'lime'}}>{title}</h2>
-				<CustomJSX jsx={rawText} picPlace={picPlace} />
+				<CustomJSX
+					jsx={rawText}
+					picPlace={`${process.env.BASE_PATH}/math/${this.props.topicId}/pic`}
+					nlinkPlace={`/math/${this.props.topicId}/page`}
+					tlinkPlace={`/math/${this.props.topicId}/proposition`}
+				/>
 			</div>
 		);
 	}

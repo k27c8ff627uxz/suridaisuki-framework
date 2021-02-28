@@ -1,6 +1,5 @@
 import React, { Component, PropsWithChildren } from 'react';
 import Link, { LinkProps } from 'next/link';
-import MathJax from 'react-mathjax';
 import JsxParser from 'react-jsx-parser';
 
 function reformReactNode(node: React.ReactNode): React.ReactNode {
@@ -63,9 +62,7 @@ export default class extends Component<PropsWithChildren<Props>> {
 		const formula = reformReactNode(children);
 		if (typeof formula !== 'string') throw `Error: <pic>${children}</pic>`;
 		return (
-			<MathJax.Provider>
-				<MathJax.Node inline formula={`\\displaystyle ${formula}`} />
-			</MathJax.Provider>
+			<span>{`\$\\displaystyle{${formula}}\$`}</span>
 		);
 	}
 	

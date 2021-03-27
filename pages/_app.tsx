@@ -26,7 +26,7 @@ function googleAdsense(
 			client={client}
 			slot={slot}
 			style={{ display: 'block' }}
-			format='auto'
+			format='horizontal'
 			responsive='true'
 		/>
 	</div>);

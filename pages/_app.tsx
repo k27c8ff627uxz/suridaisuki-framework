@@ -16,8 +16,6 @@ Router.events.on('routeChangeComplete', url => {
 function googleAdsense(
 	client: string,
 	slot: string,
-	width: number,
-	height: number,
 	style: CSS.Properties,
 ) {
 	if (client === '' || slot === '') return undefined;
@@ -27,8 +25,9 @@ function googleAdsense(
 			key={Math.random()}
 			client={client}
 			slot={slot}
-			style={{ width, height }}
-			format=''
+			style={{ display: 'block' }}
+			format='auto'
+			responsive='true'
 		/>
 	</div>);
 
@@ -56,10 +55,10 @@ const App = ({ Component, pageProps }: AppProps) => (
 			/>
 			<script id={Math.random().toString()} async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js' />
 		</Head>
-		{ googleAdsense(process.env.GAD_CLIENT, process.env.GAD_SLOT1, 728, 90, { textAlign: 'center' }) }
+		{ googleAdsense(process.env.GAD_CLIENT, process.env.GAD_SLOT1, { textAlign: 'center' }) }
 		<Component {...pageProps} />
 		<div style={{ marginTop: 30 }} />
-		{ googleAdsense(process.env.GAD_CLIENT, process.env.GAD_SLOT2, 728, 15, { textAlign: 'center', marginTop: '60px' }) }
+		{ googleAdsense(process.env.GAD_CLIENT, process.env.GAD_SLOT2, { textAlign: 'center', marginTop: '60px' }) }
 	</div>
 );
 

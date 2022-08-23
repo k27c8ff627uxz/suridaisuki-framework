@@ -4,6 +4,9 @@ const path = require('path');
 const BASE_PATH = process.env.BASE_PATH ?? '';
 
 module.exports = {
+	future: {
+		webpack5: true,
+	},
 	webpack: (config) => {
 		config.plugins.push(
 			new CopyPlugin({

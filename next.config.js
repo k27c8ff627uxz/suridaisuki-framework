@@ -5,6 +5,7 @@ const BASE_PATH = process.env.BASE_PATH ?? '';
 
 module.exports = {
 	future: {
+		// 以下の設定がなかったら、webpack 4を使いなさいと怒られる
 		webpack5: true,
 	},
 	webpack: (config) => {

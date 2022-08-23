@@ -6,7 +6,7 @@ function reformReactNode(node: React.ReactNode): React.ReactNode {
 	if (Array.isArray(node)) {
 		const ret_val = node
 			.map(reformReactNode)
-			.reduce<React.ReactNodeArray>((prev, current) => {
+			.reduce<React.ReactNode[]>((prev, current) => {
 				if (prev.length === 0) return [ current ];
 				const prevValue = prev[prev.length - 1];
 				if (typeof prevValue === 'string' && typeof current === 'string') {

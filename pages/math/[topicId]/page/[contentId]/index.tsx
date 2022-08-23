@@ -94,7 +94,8 @@ export default class extends Component<Props> {
 		const titleStyle: CSS.Properties = {
 			textAlign: 'center',
 			color: 'yellow',
-			fontSize: 'xxx-large',
+			// TODO: 'xxx-large'に直すこと
+			fontSize: 'xx-large',
 		};
 		return (<div>
 			<Head>
